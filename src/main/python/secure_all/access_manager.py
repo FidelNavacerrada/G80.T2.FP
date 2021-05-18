@@ -25,6 +25,10 @@ class AccessManager:
 
         def open_door( self, key ):
             """Opens the door if the key is valid an it is not expired"""
+
+            my_door = AccessKey.create_key_from_id(key)
+            if my_door.is_valid():
+                my_door.store_door()
             return AccessKey.create_key_from_id(key).is_valid()
 
     __instance = None

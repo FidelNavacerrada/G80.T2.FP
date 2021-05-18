@@ -11,6 +11,7 @@ from secure_all.data.attributes.attribute_key import Key
 
 from secure_all.storage.keys_json_store import KeysJsonStore
 from secure_all.parser.key_json_parser import KeyJsonParser
+from secure_all.storage.door_requests import DoorRequest
 
 
 
@@ -111,6 +112,10 @@ class AccessKey():
             raise AccessManagementException("key is not found or is expired")
         return True
 
+    def store_door(self):
+
+        door_access = DoorRequest()
+        door_access.add_item(self)
 
     @classmethod
     def create_key_from_file( cls, key_file ):

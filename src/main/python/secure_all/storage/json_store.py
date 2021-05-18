@@ -35,7 +35,7 @@ class JsonStore():
         Since this is a generic class further verifications should be included
         in the specific stores"""
         self.load_store()
-        self._data_list.append(item.__dict__)
+        self._data_list.append(item)
         self.save_store()
 
     def find_item( self, key ):

@@ -40,7 +40,7 @@ class RequestJsonStore():
 
             d={self.REQUEST_ACCESS_CODE:access_code}
             item.__dict__.update(d)
-            return super().add_item(item)
+            return super().add_item(item.__dict__)
 
         def find_item_access_code(self, key):
             """find the value key in the _KEY_FIELD"""
