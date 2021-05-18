@@ -7,7 +7,7 @@ from secure_all.data.attributes.attribute_dni import Dni
 from secure_all.data.attributes.attribute_access_type import  AccessType
 from secure_all.data.attributes.attribute_email import Email
 from secure_all.storage.requests_json_store import RequestJsonStore
-
+from secure_all.data.attributes.attribute_access_code import AccessCode
 
 class AccessRequest:
     """Class representing the access request"""
@@ -20,6 +20,9 @@ class AccessRequest:
         self.__visitor_type = access_type_object.value
         self.__email_address = Email(email_address).value
         self.__validity = access_type_object.validate_days(validity)
+
+        #self.__acces_code= AccessCode(self.access_code)
+
         access_type_object = None
         #justnow = datetime.utcnow()
         #self.__time_stamp = datetime.timestamp(justnow)
@@ -30,10 +33,13 @@ class AccessRequest:
         """It returns the json corresponding to the AccessRequest"""
         return "AccessRequest:" + json.dumps(self.__dict__)
 
-    def store_request( self ):
+
+
+
+    def store_request( self ,access_code):
         """It Saves the request in the store"""
         request_store = RequestJsonStore()
-        request_store.add_item(self)
+        request_store.add_item(self,access_code)
         del request_store
 
     @property
@@ -84,6 +90,10 @@ class AccessRequest:
     def access_code (self):
         """Property for obtaining the access code according the requirements"""
         return hashlib.md5(self.__str__().encode()).hexdigest()
+
+
+
+
 
     @classmethod
     def create_request_from_code( cls, access_code, dni ):

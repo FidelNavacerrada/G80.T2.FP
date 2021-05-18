@@ -13,8 +13,9 @@ class AccessManager:
         def request_access_code( self, id_card, name_surname, access_type, email_address, days ):
             """ this method give access to the building"""
             my_request = AccessRequest(id_card, name_surname, access_type, email_address, days)
-            my_request.store_request()
-            return my_request.access_code
+            a = my_request.access_code
+            my_request.store_request(a)
+            return a
 
         def get_access_key( self, keyfile ):
             """Returns the access key for the access code & dni received in a json file"""
