@@ -20,6 +20,8 @@ class RequestJsonStore():
         REQUEST__NAME = '_AccessRequest__name'
         ID_FIELD = '_AccessRequest__id_document'
 
+        REQUEST_ACCESS_CODE = "_AccessRequest_access_code"
+
         _FILE_PATH = JSON_FILES_PATH + "storeRequest.json"
         _ID_FIELD = ID_FIELD
 
@@ -33,12 +35,20 @@ class RequestJsonStore():
             if not isinstance(item,AccessRequest):
                 raise AccessManagementException(self.INVALID_ITEM)
 
-            if not self.find_item(item.id_document) is None:
+            if not self.find_item_access_code(access_code) is None:
                 raise AccessManagementException(self.ID_DOCUMENT_ALREADY_STORED)
 
-            d={"_AccessRequest_access_code":access_code}
+            d={self.REQUEST_ACCESS_CODE:access_code}
             item.__dict__.update(d)
             return super().add_item(item)
+
+        def find_item_access_code(self, key):
+            """find the value key in the _KEY_FIELD"""
+            self.load_store()
+            for item in self._data_list:
+                if item[self.REQUEST_ACCESS_CODE] == key:
+                    return item
+            return None
 
 
     __instance = None
