@@ -7,7 +7,9 @@ class JsonParser():
     """Class for parsing input JSON Files for the secure_all system"""
     #pylint: disable=too-few-public-methods
     _key_list = []
-    _key_error_message = "JSON Decode Error - Wrong label"
+    _KEY_ERROR_MESSAGE = "JSON Decode Error - Wrong label"
+    _WRONG_FILE_OR_PATH = "Wrong file or file path"
+    _WRONG_JSON_FORMAT= "JSON Decode Error - Wrong JSON Format"
 
     def __init__( self, file ):
         self._file = file
@@ -20,16 +22,16 @@ class JsonParser():
             with open(self._file, "r", encoding="utf-8", newline="") as json_file:
                 data = json.load(json_file)
         except FileNotFoundError as ex:
-            raise AccessManagementException("Wrong file or file path") from ex
+            raise AccessManagementException(self._WRONG_FILE_OR_PATH) from ex
         except json.JSONDecodeError as ex:
-            raise AccessManagementException("JSON Decode Error - Wrong JSON Format") from ex
+            raise AccessManagementException(self._WRONG_JSON_FORMAT) from ex
         return data
 
     def _validate_json( self ):
         """validate the json keys"""
         for key in self._key_list:
             if not key in self._json_content.keys():
-                raise AccessManagementException(self._key_error_message)
+                raise AccessManagementException(self._KEY_ERROR_MESSAGE)
 
     @property
     def json_content( self ):
