@@ -8,7 +8,7 @@ class RevoqueJsonStore():
     """Extends JsonStore """
     class __RevoqueJsonStore(JsonStore):
         #pylint: disable=invalid-name
-        ID_FIELD = "_AccessKey__key"
+        ID_FIELD = "_RevokeKey__key"
         MAIL_LIST = "_AccessKey__notification_emails"
         REASON = "_AccessKey__reasons"
 

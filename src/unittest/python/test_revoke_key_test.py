@@ -17,8 +17,7 @@ class MyTestCase(unittest.TestCase):
         door_store.empty_store()
         requests_store.empty_store()
         keys_store.empty_store()
-        rekest_store=RequestJsonStore()
-        rekest_store.empty_store()
+
         # introduce a key valid and not expired and guest
         my_manager = AccessManager()
         my_manager.request_access_code("05270358T", "Pedro Martin",
@@ -45,8 +44,9 @@ class MyTestCase(unittest.TestCase):
     def test_access_key_ok_con_1_email_2(self):
         """Test para validar"""
 
-
-        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\ejemplo.json"
+        rekest_store = RequestJsonStore()
+        rekest_store.empty_store()
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\good_1.json"
 
         my_mails = AccessManager().revoke_key(my_file)
         self.assertEqual([
@@ -58,7 +58,7 @@ class MyTestCase(unittest.TestCase):
 
     #def test_access_key_sin_campo_1_12(self):
      #   """Test para validar"""
-      #  my_file = str(Path.home()) + " \PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\ejemplo.json"
+      #  my_file = str(Path.home()) + " \PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\good_1.json"
        # my_key = AccessManager()
         #with self.assertRaises(AccessManagementException) as cm:
          #   my_key.get_access_key(my_file)
