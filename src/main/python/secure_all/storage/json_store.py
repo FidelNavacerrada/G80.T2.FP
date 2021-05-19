@@ -6,6 +6,7 @@ class JsonStore():
     """Managest stores based on JsonFiles"""
     _FILE_PATH = ""
     _ID_FIELD = ""
+    MAIL_LIST = "_AccessKey__notification_emails"
     _KEY_ERROR_MESSAGE = "JSON Decode Error - Wrong label"
     _WRONG_FILE_OR_PATH = "Wrong file or file path"
     _WRONG_JSON_FORMAT = "JSON Decode Error - Wrong JSON Format"

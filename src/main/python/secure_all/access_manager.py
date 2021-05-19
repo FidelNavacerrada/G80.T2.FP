@@ -2,6 +2,7 @@
 
 from secure_all.data.access_key import AccessKey
 from secure_all.data.access_request import AccessRequest
+from secure_all.data.revoke_key import RevokeKey
 
 
 class AccessManager:
@@ -30,6 +31,12 @@ class AccessManager:
             if my_door.is_valid():
                 my_door.store_door()
             return AccessKey.create_key_from_id(key).is_valid()
+
+        def revoke_key(self,filepath):
+            my_revoke=RevokeKey.create_revoke_from_file(filepath)
+            return my_revoke.find_key_store()
+
+
 
     __instance = None
 
