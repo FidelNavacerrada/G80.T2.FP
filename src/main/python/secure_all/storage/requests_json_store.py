@@ -25,7 +25,7 @@ class RequestJsonStore():
         _FILE_PATH = JSON_FILES_PATH + "storeRequest.json"
         _ID_FIELD = ID_FIELD
 
-        def add_item( self, item,access_code):
+        def add_item(self, item, access_code):
             """Implementing the restrictions related to avoid duplicated DNIs in the list
             import of AccessRequest must be placed here instead of at the top of the file
             to avoid circular references"""
@@ -38,7 +38,7 @@ class RequestJsonStore():
             if not self.find_item_access_code(access_code) is None:
                 raise AccessManagementException(self.ID_DOCUMENT_ALREADY_STORED)
 
-            d={self.REQUEST_ACCESS_CODE:access_code}
+            d = {self.REQUEST_ACCESS_CODE:access_code}
             item.__dict__.update(d)
             return super().add_item(item.__dict__)
 

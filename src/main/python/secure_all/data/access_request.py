@@ -7,7 +7,7 @@ from secure_all.data.attributes.attribute_dni import Dni
 from secure_all.data.attributes.attribute_access_type import  AccessType
 from secure_all.data.attributes.attribute_email import Email
 from secure_all.storage.requests_json_store import RequestJsonStore
-from secure_all.data.attributes.attribute_access_code import AccessCode
+#from secure_all.data.attributes.attribute_access_code import AccessCode
 
 class AccessRequest:
     """Class representing the access request"""
