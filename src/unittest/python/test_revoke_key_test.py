@@ -1,6 +1,5 @@
 import unittest
 from pathlib import Path
-from secure_all.access_manager import AccessManager
 from secure_all import AccessManager, AccessManagementException, \
     AccessKey, JSON_FILES_PATH, KeysJsonStore, RequestJsonStore
 from secure_all.storage.door_requests import DoorRequest
@@ -10,6 +9,7 @@ class MyTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
+        """class method setup"""
         # first af all, i introduce all value tha I need for the estructural testing
         # remove the old storeKeys
         requests_store = RequestJsonStore()
