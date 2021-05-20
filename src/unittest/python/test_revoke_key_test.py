@@ -193,7 +193,47 @@ class MyTestCase(unittest.TestCase):
             AccessManager().revoke_key(my_file)
         self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
 
+    def test_revoke_key_doble_e1(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/doble_e1.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
 
+    def test_revoke_key_doble_igualdad1(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/doble_igualdad1.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
+
+    def test_revoke_key_doble_vd1(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/doble_vd1.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
+
+    def test_revoke_key_sin_e1(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/sin_e1.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
+
+    def test_revoke_key_sin_igualdad1(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/sin_igualdad1.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
+
+    def test_revoke_key_sin_vd1(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/sin_vd1.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
 
 if __name__ == '__main__':
     unittest.main()

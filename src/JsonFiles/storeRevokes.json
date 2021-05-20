@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "_RevokeKey__key": "de000a04f3a9b1d15b07e38b166f00f3fb1bf46533f32ac37156faf43e47f722",
+    "_RevokeKey__revocation": "Final",
+    "_RevokeKey__reason": "Insultar a un miembro del equipo"
+  },
+  {
+    "_RevokeKey__key": "657244bdf89f067462e6a7f12b44749340f61030619f93bee391fbaf93361627",
+    "_RevokeKey__revocation": "Temporal",
+    "_RevokeKey__reason": "Mal uso del equipo ofrecido"
+  }
+]
