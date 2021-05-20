@@ -21,7 +21,7 @@ class RevoqueJsonStore():
             from secure_all.data.revoke_key import RevokeKey
 
             if not isinstance(item,RevokeKey):
-                raise AccessManagementException("El archivo de entrada tiene algún problema relacionado con su formato ocon su acceso.")
+                raise AccessManagementException("El archivo de entrada tiene algún problema relacionado con su formato o con su acceso.")
 
             if not self.find_item(item.getter_key) is None:
                 raise AccessManagementException("La clave fue revocada previamente por este método.")
