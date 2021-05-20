@@ -4,6 +4,7 @@ from secure_all.storage.keys_json_store import KeysJsonStore
 from secure_all.exception.access_management_exception import AccessManagementException
 from datetime import datetime
 
+
 class RevokeKey():
     def __init__(self,key,revocation,reason):
         """class constructor"""
