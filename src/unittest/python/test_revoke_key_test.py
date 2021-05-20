@@ -417,5 +417,19 @@ class MyTestCase(unittest.TestCase):
             AccessManager().revoke_key(my_file)
         self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
 
+    def test_revoke_key_noesjson(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/noesjson"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", cm.exception.message)
+
+    def test_revoke_key_clave_erronea(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/clave_erronea.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("La clave recibida no existe.", cm.exception.message)
+
 if __name__ == '__main__':
     unittest.main()
