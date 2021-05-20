@@ -32,7 +32,7 @@ class KeysJsonStore():
             return super().add_item(item.__dict__)
 
         def find_emails(self,item):
-
+            """devuelve el email"""
             return self.find_item(item)
 
     __instance = None

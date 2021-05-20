@@ -1,7 +1,8 @@
+"""door request"""
+from datetime import datetime
 from secure_all.storage.json_store import JsonStore
 from secure_all.exception.access_management_exception import AccessManagementException
 from secure_all.cfg.access_manager_config import JSON_FILES_PATH
-from datetime import datetime
 
 class DoorRequest():
     """Extends JsonStore """
