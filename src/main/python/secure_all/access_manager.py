@@ -34,7 +34,7 @@ class AccessManager:
 
         def revoke_key(self,filepath):
             my_revoke=RevokeKey.create_revoke_from_file(filepath)
-            return my_revoke.find_key_store()
+            return my_revoke.revoke_manager()
 
 
 
