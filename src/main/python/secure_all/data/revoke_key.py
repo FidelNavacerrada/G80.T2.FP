@@ -10,6 +10,11 @@ class RevokeKey():
         self.__revocation = revocation
         self.__reason = reason
 
+    def revoke_manager(self):
+        self.find_key_store()
+        self.stored_revoke()
+        return self.find_email()
+
     def find_key_store(self):
 
         my_revoke = KeysJsonStore()
@@ -18,11 +23,11 @@ class RevokeKey():
             raise AccessManagementException("La clave recibida no existe.")
         expiration_day=x["_AccessKey__expiration_date"]
         self.expiration(expiration_day)
-        self.stored_revoke()
-        return self.find_email()
+        # self.stored_revoke()
+        #return self.find_email()
     def expiration(self,expire_day):
 
-        if expire_day < datetime.timestamp(datetime.utcnow()):
+        if (expire_day < datetime.timestamp(datetime.utcnow()) and expire_day!=0):
             raise AccessManagementException("La clave recibida ha caducado.")
 
 

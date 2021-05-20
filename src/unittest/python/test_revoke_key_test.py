@@ -4,6 +4,7 @@ from secure_all.access_manager import AccessManager
 from secure_all import AccessManager, AccessManagementException, \
     AccessKey, JSON_FILES_PATH, KeysJsonStore, RequestJsonStore
 from secure_all.storage.door_requests import DoorRequest
+from secure_all.storage.revoke_store import RevoqueJsonStore
 
 class MyTestCase(unittest.TestCase):
 
@@ -17,7 +18,8 @@ class MyTestCase(unittest.TestCase):
         door_store.empty_store()
         requests_store.empty_store()
         keys_store.empty_store()
-
+        rekest_store = RevoqueJsonStore()
+        rekest_store.empty_store()
         # introduce a key valid and not expired and guest
         my_manager = AccessManager()
         my_manager.request_access_code("05270358T", "Pedro Martin",
@@ -41,27 +43,31 @@ class MyTestCase(unittest.TestCase):
         # We manipulate the expiration date to obtain an expired AccessKey
         my_key_expirated.expiration_date = 0
         my_key_expirated.store_keys()
-    def test_access_key_ok_con_1_email_2(self):
+
+    def test_revoke_key_ok_1(self):
         """Test para validar"""
 
-        rekest_store = RequestJsonStore()
-        rekest_store.empty_store()
         my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\good_1.json"
 
         my_mails = AccessManager().revoke_key(my_file)
-        self.assertEqual([
-      "mail1@uc3m.es",
-      "mail2@uc3m.es"
-    ], my_mails)
+        self.assertEqual(["mail1@uc3m.es", "mail2@uc3m.es"], my_mails)
+
+    def test_revoke_key_ok_2(self):
+        """Test para validar , con """
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\good_2.json"
+
+        my_mails = AccessManager().revoke_key(my_file)
+        self.assertEqual(["mail1@uc3m.es","mail2@uc3m.es"], my_mails)
+
+
+    def test_revoke_key_repetida(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\_revok_repetida.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("La clave fue revocada previamente por este método.",cm.exception.message)
 
 
 
-    #def test_access_key_sin_campo_1_12(self):
-     #   """Test para validar"""
-      #  my_file = str(Path.home()) + " \PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke\good_1.json"
-       # my_key = AccessManager()
-        #with self.assertRaises(AccessManagementException) as cm:
-         #   my_key.get_access_key(my_file)
-        #self.assertEqual(cm.exception.message, "JSON-decode error - Wrong JSON format")
 if __name__ == '__main__':
     unittest.main()
