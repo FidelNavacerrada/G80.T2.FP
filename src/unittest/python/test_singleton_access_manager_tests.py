@@ -4,7 +4,8 @@ import unittest
 
 from secure_all import AccessManager, KeysJsonStore, RequestJsonStore
 from secure_all.data.attributes.attribute_dni import Dni
-
+from secure_all.storage.door_requests import DoorRequest
+from secure_all.storage.revoke_store import RevoqueJsonStore
 
 class MyTestCase(unittest.TestCase):
     """Test case for the singletons"""
@@ -34,6 +35,22 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(keys_json_store_1, keys_json_store_2)
         self.assertEqual(keys_json_store_2, keys_json_store_3)
         self.assertEqual(keys_json_store_3, keys_json_store_1)
+
+        revoke_key_1 = RevoqueJsonStore()
+        revoke_key_2 = RevoqueJsonStore()
+        revoke_key_3 = RevoqueJsonStore()
+
+        self.assertEqual( revoke_key_1,  revoke_key_2)
+        self.assertEqual( revoke_key_2,  revoke_key_3)
+        self.assertEqual( revoke_key_3,  revoke_key_1)
+
+        door_request_1 = DoorRequest()
+        door_request_2 = DoorRequest()
+        door_request_3 = DoorRequest()
+
+        self.assertEqual(door_request_1, door_request_2)
+        self.assertEqual(door_request_2, door_request_3)
+        self.assertEqual(door_request_3, door_request_1)
 
         #probamos ahora que dos clases sin singleton devuelven
         #instancias distintas. Por ejemplo con DNI

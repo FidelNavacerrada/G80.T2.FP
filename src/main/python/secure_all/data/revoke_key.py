@@ -6,44 +6,46 @@ from datetime import datetime
 
 class RevokeKey():
     def __init__(self,key,revocation,reason):
+        """class constructor"""
         self.__key = key
         self.__revocation = revocation
         self.__reason = reason
 
     def revoke_manager(self):
+        """method to manager revokes"""
         self.find_key_store()
         self.stored_revoke()
         return self.find_email()
 
     def find_key_store(self):
-
+        """method to find a key in storeKeys"""
         my_revoke = KeysJsonStore()
         x=my_revoke.find_item(self.getter_key)
         if not x:
             raise AccessManagementException("La clave recibida no existe.")
         expiration_day=x["_AccessKey__expiration_date"]
         self.expiration(expiration_day)
-        # self.stored_revoke()
-        #return self.find_email()
-    def expiration(self,expire_day):
 
+    def expiration(self,expire_day):
+        """method to check an expiration"""
         if (expire_day < datetime.timestamp(datetime.utcnow()) and expire_day!=0):
             raise AccessManagementException("La clave recibida ha caducado.")
 
 
     def stored_revoke(self):
-
+        """method to store a revoke"""
         my_store_revokes=RevoqueJsonStore()
         my_store_revokes.add_item(self)
 
     def find_email(self):
-
+        """method to find emails"""
         my_emails=KeysJsonStore()
         email=my_emails.find_emails(self.getter_key)
         x=email["_AccessKey__notification_emails"]
         return x
     @property
     def getter_key(self):
+        """property ytha return the key"""
         return self.__key
 
     @classmethod
