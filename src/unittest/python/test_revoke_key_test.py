@@ -67,7 +67,40 @@ class MyTestCase(unittest.TestCase):
             AccessManager().revoke_key(my_file)
         self.assertEqual("La clave fue revocada previamente por este método.",cm.exception.message)
 
+    def test_revoke_key_fichero_vacio(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/fichero_vacio.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format",cm.exception.message)
 
+    def test_revoke_key_no_inicio_objeto(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/no_inicio_objeto.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format",cm.exception.message)
+
+    def test_revoke_key_no_inicio_repetido(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/inicio_repetido.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format",cm.exception.message)
+
+    def test_revoke_key_no_datos(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/no_datos.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong label",cm.exception.message)
+
+    def test_revoke_key_datos_repetidos(self):
+        """Test para validar"""
+        my_file = str(Path.home()) + "\PycharmProjects\G80.T2.FP\src\JsonFiles\JsonFiles_Revoke/datos_repetidos.json"
+        with self.assertRaises(AccessManagementException) as cm:
+            AccessManager().revoke_key(my_file)
+        self.assertEqual("JSON Decode Error - Wrong JSON Format",cm.exception.message)
 
 if __name__ == '__main__':
     unittest.main()
