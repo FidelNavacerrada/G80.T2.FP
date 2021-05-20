@@ -113,7 +113,7 @@ class AccessKey():
         return True
 
     def store_door(self):
-
+        """guarda el valor de la puerta"""
         door_access = DoorRequest()
         door_access.add_item(self)
 
