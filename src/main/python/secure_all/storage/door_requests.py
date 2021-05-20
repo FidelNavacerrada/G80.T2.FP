@@ -1,12 +1,11 @@
-"""Implements the RequestsJSON Store"""
 from secure_all.storage.json_store import JsonStore
 from secure_all.exception.access_management_exception import AccessManagementException
 from secure_all.cfg.access_manager_config import JSON_FILES_PATH
+from datetime import datetime
 
-
-class KeysJsonStore():
+class DoorRequest():
     """Extends JsonStore """
-    class __KeysJsonStore(JsonStore):
+    class __DoorRequest(JsonStore):
         #pylint: disable=invalid-name
         ID_FIELD = "_AccessKey__key"
         ACCESS_CODE = "_AccessKey__access_code"
@@ -15,7 +14,7 @@ class KeysJsonStore():
         INVALID_ITEM = "Invalid item to be stored as a key"
         KEY_ALREADY_STORED = "key already found in storeRequest"
 
-        _FILE_PATH = JSON_FILES_PATH + "storeKeys.json"
+        _FILE_PATH = JSON_FILES_PATH + "storeAccess.json"
         _ID_FIELD = ID_FIELD
 
         def add_item( self, item):
@@ -26,21 +25,18 @@ class KeysJsonStore():
             if not isinstance(item,AccessKey):
                 raise AccessManagementException(self.INVALID_ITEM)
 
-            if not self.find_item(item.key) is None:
-                raise AccessManagementException(self.KEY_ALREADY_STORED)
+            #if not self.find_item(item.key) is None:
+             #   raise AccessManagementException(self.KEY_ALREADY_STORED)
+            dicttt= dict(_AccessKey__key=item.key,_AccessKey_time=datetime.timestamp(datetime.utcnow()))
 
-            return super().add_item(item.__dict__)
-
-        def find_emails(self,item):
-
-            return self.find_item(item)
+            return super().add_item(dicttt)
 
     __instance = None
 
     def __new__( cls ):
-        if not KeysJsonStore.__instance:
-            KeysJsonStore.__instance = KeysJsonStore.__KeysJsonStore()
-        return KeysJsonStore.__instance
+        if not DoorRequest.__instance:
+            DoorRequest.__instance = DoorRequest.__DoorRequest()
+        return DoorRequest.__instance
 
     def __getattr__ ( self, nombre ):
         return getattr(self.__instance, nombre)

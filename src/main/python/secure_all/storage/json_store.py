@@ -6,6 +6,7 @@ class JsonStore():
     """Managest stores based on JsonFiles"""
     _FILE_PATH = ""
     _ID_FIELD = ""
+    MAIL_LIST = "_AccessKey__notification_emails"
     _KEY_ERROR_MESSAGE = "JSON Decode Error - Wrong label"
     _WRONG_FILE_OR_PATH = "Wrong file or file path"
     _WRONG_JSON_FORMAT = "JSON Decode Error - Wrong JSON Format"
@@ -35,7 +36,7 @@ class JsonStore():
         Since this is a generic class further verifications should be included
         in the specific stores"""
         self.load_store()
-        self._data_list.append(item.__dict__)
+        self._data_list.append(item)
         self.save_store()
 
     def find_item( self, key ):

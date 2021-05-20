@@ -3,7 +3,7 @@ import unittest
 
 from secure_all import AccessManager, AccessManagementException, \
     AccessKey, JSON_FILES_PATH, KeysJsonStore, RequestJsonStore
-
+from secure_all.storage.door_requests import DoorRequest
 
 class TestAccessManager(unittest.TestCase):
     """test class for open_door"""
@@ -15,6 +15,8 @@ class TestAccessManager(unittest.TestCase):
         # remove the old storeKeys
         requests_store = RequestJsonStore()
         keys_store = KeysJsonStore()
+        door_store = DoorRequest()
+        door_store.empty_store()
         requests_store.empty_store()
         keys_store.empty_store()
         # introduce a key valid and not expired and guest
