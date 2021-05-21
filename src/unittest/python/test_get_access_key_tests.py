@@ -49,9 +49,9 @@ class TestAccessManager(unittest.TestCase):
                 if row["VALID INVALID"] ==  "VALID":
                     valor = my_code.get_access_key(file_name)
                     self.assertEqual(row[ "EXPECTED RESULT" ], valor)
-                    print("el valor: " + valor)
+
                     generated_key = keys_store.find_item(valor)
-                    print(generated_key)
+
                     self.assertIsNotNone(generated_key)
                 else:
                     with self.assertRaises(AccessManagementException) as c_m:
