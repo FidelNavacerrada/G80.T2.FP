@@ -3,6 +3,7 @@ from secure_all.storage.revoke_store import RevoqueJsonStore
 from secure_all.storage.keys_json_store import KeysJsonStore
 from secure_all.exception.access_management_exception import AccessManagementException
 from datetime import datetime
+from secure_all.data.attributes.attribute_key import Key
 
 
 class RevokeKey():
